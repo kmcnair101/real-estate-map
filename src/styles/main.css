@@ -1,56 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import ReactMapGL, { Marker, Popup } from 'react-map-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
-import { fetchProperties } from '../services/propertyService';
-
-const MapComponent = () => {
-  const [viewport, setViewport] = useState({
-    latitude: 37.7749,
-    longitude: -122.4194,
-    zoom: 12,
-    width: '100vw',
-    height: '100vh',
-  });
-
-  const [properties, setProperties] = useState([]);
-  const [selectedProperty, setSelectedProperty] = useState(null);
-
-  useEffect(() => {
-    // Fetch property data when component mounts
-    fetchProperties().then(data => setProperties(data));
-  }, []);
-
-  return (
-    <ReactMapGL
-      {...viewport}
-      mapboxApiAccessToken={import.meta.env.VITE_MAPBOX_TOKEN}
-      onViewportChange={(newViewport) => setViewport(newViewport)}
-    >
-      {properties.map(property => (
-        <Marker key={property.id} latitude={property.latitude} longitude={property.longitude}>
-          <button
-            onClick={() => setSelectedProperty(property)}
-            className="marker-btn"
-          >
-            <img src="/assets/markers/house-icon.png" alt="Property Marker" />
-          </button>
-        </Marker>
-      ))}
-
-      {selectedProperty && (
-        <Popup
-          latitude={selectedProperty.latitude}
-          longitude={selectedProperty.longitude}
-          onClose={() => setSelectedProperty(null)}
-        >
-          <div>
-            <h3>{selectedProperty.name}</h3>
-            <p>{selectedProperty.description}</p>
-          </div>
-        </Popup>
-      )}
-    </ReactMapGL>
-  );
-};
-
-export default MapComponent;
+body, html, #root {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .App {
+    text-align: center;
+  }
+  
+  .filter-controls {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1;
+  }
+  
+  .marker-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .popup-content {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
