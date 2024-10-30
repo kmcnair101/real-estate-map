@@ -1,0 +1,36 @@
+.map-legend {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .map-legend ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .map-legend li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .map-legend img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+  }
+  
+  .cluster-marker {
+    background-color: rgba(0, 149, 255, 0.6);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
